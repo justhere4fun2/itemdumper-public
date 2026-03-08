@@ -1,4 +1,4 @@
-# NR Item Dumper
+# OSRS Cache Item Dumper & NR Custom Item Injecter
 
 > **Before using this tool:** If you are not using version control, it is strongly recommended that you set up a git repository for your project and track your changes using Git, GitHub Desktop, or another version control tool. This tool makes direct edits to your server source files and having a backup is important.
 
@@ -25,15 +25,31 @@ const val SERVER_CACHE_FOLDER = "path/to/your/server/cache"
 All commands are run from the terminal inside the project directory.
 
 ### Base command
-
+This should be useful for just about anyone
 ```
 ./gradlew item-dump --args="--itemid <id>"
 ```
 
 This will extract the item's models locally into a `models/` folder and generate a `.txt` file containing a ready-to-edit TOML definition snippet. Nothing in your server source will be touched.
 
-### Full automate command
+Output includes helpful information including item rotation data (very useful for items being injected from a newer cache)
 
+```
+=== Item Display Data ===
+Name:         Echo pickaxe
+Model:        55635
+Zoom:         1582
+Pitch:        455
+Roll:         1149
+Yaw:          0
+XOff:         0
+YOff:         -5
+Male Model:   55735
+Female Model: 55732
+```
+
+### Full automate command
+#### **Note: This is intended for the NR 225 source and has not been tested elsewhere.** 
 ```
 ./gradlew item-dump --args="--itemid <id> --automate --equipslot <slot> --inheritfrom <id>"
 ```
@@ -46,7 +62,7 @@ This will extract the item's models locally into a `models/` folder and generate
 
 The item ID from the **external cache** you wish to extract.
 
-You can find item IDs using [Qodat](https://github.com/Z-Kris/qodat) or the OSRS Wiki item ID list:
+You can find item IDs using [Qodat](https://qodat.github.io/qodat/download.html) or the OSRS Wiki item ID list:
 https://oldschool.runescape.wiki/w/Item_IDs
 
 > Make sure you are on the correct cache version when cross-referencing the wiki.
@@ -54,7 +70,8 @@ https://oldschool.runescape.wiki/w/Item_IDs
 ---
 
 #### `--automate` *(optional)*
-
+### Fully auto command
+#### **Note: This is intended for the NR 225 source and has not been tested elsewhere.**
 Automatically performs the following:
 - Copies extracted model `.dat` files into your server's custom items model folder
 - Adds model entries to `NearRealityCustomItemPacker.kt` with auto-incremented model IDs

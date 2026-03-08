@@ -4,8 +4,6 @@ import NameUtils.toSnakeCase
 
 object AnimationDumper {
 
-    //private fun String.toSnakeCase() = lowercase().replace(" ", "_")
-
     fun dump(cache: CacheLibrary, itemId: Int, outputDir: String = "models") {
         val item = ItemDefinition.load(cache, itemId)
         val itemName = item.name.toSnakeCase()
@@ -41,9 +39,9 @@ object AnimationDumper {
             if (raw != null) {
                 val outFile = File(dir, "${itemName}_${label}_anim${animId}.bin")
                 outFile.writeBytes(raw)
-                println("  → Extracted ${raw.size} bytes → ${outFile.path}")
+                println("  -> Extracted ${raw.size} bytes -> ${outFile.path}")
             } else {
-                println("  → Could not extract raw data for anim $animId")
+                println("  -> Could not extract raw data for anim $animId")
             }
         }
 
@@ -61,9 +59,9 @@ object AnimationDumper {
             if (raw != null) {
                 val outFile = File(dir, "anim_${animId}.bin")
                 outFile.writeBytes(raw)
-                println("Anim $animId → ${raw.size} bytes → ${outFile.path}")
+                println("Anim $animId -> ${raw.size} bytes -> ${outFile.path}")
             } else {
-                println("Anim $animId → NOT FOUND in cache")
+                println("Anim $animId -> NOT FOUND in cache")
             }
         }
         println()
@@ -80,9 +78,9 @@ object AnimationDumper {
             if (data != null) {
                 val outFile = File(dir, "model_$modelId.dat")
                 outFile.writeBytes(data)
-                println("Model $modelId → ${data.size} bytes → ${outFile.path}")
+                println("Model $modelId -> ${data.size} bytes → ${outFile.path}")
             } else {
-                println("Model $modelId → NOT FOUND in cache")
+                println("Model $modelId -> NOT FOUND in cache")
             }
         }
         println()
@@ -104,42 +102,42 @@ object AnimationDumper {
 
         val resultFiles = mutableMapOf<String, File>()
 
-        // Inventory model → drop
+        // Inventory model -> Drop
         if (item.inventoryModel != 0) {
             val data = cache.data(7, item.inventoryModel, 0)
             val outFile = File(dir, "${itemName}_drop.dat")
             if (data != null) {
                 outFile.writeBytes(data)
-                println("Inventory model ${item.inventoryModel} → ${outFile.path}")
+                println("Inventory model ${item.inventoryModel} -> ${outFile.path}")
                 resultFiles["drop"] = outFile
             } else {
-                println("Inventory model ${item.inventoryModel} → NOT FOUND in cache")
+                println("Inventory model ${item.inventoryModel} -> NOT FOUND in cache")
             }
         }
 
-        // Male model → male_equip
+        // Male model -> male_equip
         if (item.maleModel0 != -1) {
             val data = cache.data(7, item.maleModel0, 0)
             val outFile = File(dir, "${itemName}_male_equip.dat")
             if (data != null) {
                 outFile.writeBytes(data)
-                println("Male model ${item.maleModel0} → ${outFile.path}")
+                println("Male model ${item.maleModel0} -> ${outFile.path}")
                 resultFiles["male_equip"] = outFile
             } else {
-                println("Male model ${item.maleModel0} → NOT FOUND in cache")
+                println("Male model ${item.maleModel0} -> NOT FOUND in cache")
             }
         }
 
-        // Female model → female_equip
+        // Female model -> female_equip
         if (item.femaleModel0 != -1) {
             val data = cache.data(7, item.femaleModel0, 0)
             val outFile = File(dir, "${itemName}_female_equip.dat")
             if (data != null) {
                 outFile.writeBytes(data)
-                println("Female model ${item.femaleModel0} → ${outFile.path}")
+                println("Female model ${item.femaleModel0} -> ${outFile.path}")
                 resultFiles["female_equip"] = outFile
             } else {
-                println("Female model ${item.femaleModel0} → NOT FOUND in cache")
+                println("Female model ${item.femaleModel0} -> NOT FOUND in cache")
             }
         }
 

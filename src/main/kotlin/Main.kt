@@ -15,7 +15,7 @@ const val CUSTOM_ITEM_PACKER    = "$SERVER_CACHE_FOLDER\\src\\main\\kotlin\\com\
 
 fun main(args: Array<String>) {
 
-    // ── SpotAnim lookup (standalone mode, skips item dumping) ────────────────
+    // Spotanim lookup, WIP
     val spotAnimIndex = args.indexOf("--spotanim")
     if (spotAnimIndex != -1) {
         val spotAnimId = args.getOrNull(spotAnimIndex + 1)?.toIntOrNull()
@@ -40,7 +40,7 @@ fun main(args: Array<String>) {
         return
     }
 
-    // ── Parse item args ──────────────────────────────────────────────────────
+    // Parse item args
     val itemId = args.indexOf("--itemid")
         .takeIf { it != -1 }
         ?.let { args.getOrNull(it + 1)?.toIntOrNull() }
@@ -89,11 +89,11 @@ fun main(args: Array<String>) {
         ?.let { args.getOrNull(it + 1)?.toIntOrNull() }
         ?: 1704
 
-    // ── Load cache ───────────────────────────────────────────────────────────
+    // Load Cache
     val cache = CacheLibrary.create(EXTERNAL_CACHE_PATH)
     val item  = ItemDefinition.load(cache, itemId)
 
-    // ── Always: print display data ───────────────────────────────────────────
+    // Print Display Data
     println("=== Item Display Data ===")
     println("Name:         ${item.name}")
     println("Model:        ${item.inventoryModel}")
@@ -107,10 +107,8 @@ fun main(args: Array<String>) {
     println("Female Model: ${item.femaleModel0.takeIf { it != -1 } ?: "none"}")
     println()
 
-    // ── Always: extract models locally ──────────────────────────────────────
+    // Dump models locally
     val localModelPaths = AnimationDumper.dumpItemModels(cache, itemId)
-
-    // ── Always: extract animations locally ──────────────────────────────────
     AnimationDumper.dump(cache, itemId)
 
     if (automate) {

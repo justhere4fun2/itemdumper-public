@@ -2,6 +2,7 @@
 
 > **Before using this tool:** If you are not using version control, it is strongly recommended that you set up a git repository for your project and track your changes using Git, GitHub Desktop, or another version control tool. This tool makes direct edits to your server source files and having a backup is important.
 
+>Feel free to fork this, change it, distribute it, do whatever you want with it. 
 ---
 
 ## Section 1 — Setup

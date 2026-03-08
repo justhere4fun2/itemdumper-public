@@ -1,0 +1,27 @@
+# Gloves of the damned
+[[item]]
+id=0 #CHANGE THIS - Set this to next available
+inherit=1704 #CHANGE THIS
+name    = "Gloves of the damned"
+examine = "CHANGE THIS"
+invmodel=0 #CHANGE THIS - register in NearRealityCustomItemPacker.kt first
+primarymalemodel=0 #CHANGE THIS - register in NearRealityCustomItemPacker.kt first
+primaryfemalemodel=0 #CHANGE THIS - register in NearRealityCustomItemPacker.kt first
+grandexchange=false
+stackable=0
+placeholderid=0 #CHANGE THIS - set to placeholder ID
+zoom=888
+modelroll=111
+modelpitch=525
+modelyaw=0
+offsetx=-1
+offsety=1
+
+# Gloves of the damned (Placeholder)
+[[item]]
+id=0 #CHANGE THIS - set this to next available
+inherit=1704 #CHANGE THIS
+name="Gloves of the damned"
+placeholderid=0 #CHANGE THIS - set to main item id (the itemID set for non placeholder item)
+placeholdertemplate=14401
+invmodel=0 #CHANGE THIS - Set to the same as the non placeholder item
